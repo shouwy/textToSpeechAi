@@ -1,0 +1,34 @@
+@if (chapter) {
+  <mat-card class="nav-card">
+    <mat-card-content>
+      <div class="nav-buttons">
+        <button
+          mat-stroked-button
+          color="primary"
+          (click)="goPrevious()"
+          [disabled]="!hasPrevious || isLoading"
+          class="nav-btn"
+          matTooltip="{{ chapter.previousChapterUrl ?? 'No previous chapter' }}"
+        >
+          <mat-icon>arrow_back</mat-icon>
+          Previous Chapter
+        </button>
+
+        <span class="spacer"></span>
+
+        <button
+          mat-stroked-button
+          color="primary"
+          (click)="goNext()"
+          [disabled]="!hasNext || isLoading"
+          class="nav-btn"
+          matTooltip="{{ chapter.nextChapterUrl ?? 'No next chapter' }}"
+        >
+          Next Chapter
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+}
+

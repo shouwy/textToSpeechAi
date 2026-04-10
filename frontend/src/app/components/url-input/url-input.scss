@@ -1,0 +1,27 @@
+.url-input-card {
+  margin-bottom: 16px;
+
+  mat-card-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  mat-card-content {
+    padding-top: 16px;
+  }
+}
+
+.url-field {
+  width: 100%;
+}
+
+.load-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  mat-spinner {
+    display: inline-block;
+  }
+}

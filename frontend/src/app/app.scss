@@ -1,0 +1,32 @@
+.app-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  gap: 12px;
+
+  mat-icon {
+    font-size: 28px;
+    height: 28px;
+    width: 28px;
+  }
+}
+
+.toolbar-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.toolbar-spacer {
+  flex: 1;
+}
+
+.toolbar-subtitle {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.app-container {
+  max-width: 900px;
+  margin: 24px auto;
+  padding: 0 16px 64px;
+}

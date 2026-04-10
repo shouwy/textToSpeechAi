@@ -1,0 +1,34 @@
+@if (isLoading) {
+  <div class="loading-container">
+    <mat-spinner diameter="60"></mat-spinner>
+    <p>Loading chapter…</p>
+  </div>
+}
+
+@if (!isLoading && chapter) {
+  <mat-card class="reader-card">
+    <mat-card-header>
+      <mat-card-title class="chapter-title">{{ chapter.title }}</mat-card-title>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content class="chapter-content">
+      @for (paragraph of chapter.paragraphs; track $index) {
+        <p
+          class="paragraph"
+          [class.active]="isActive($index)"
+          [id]="'p-' + $index"
+        >
+          {{ paragraph }}
+        </p>
+      }
+    </mat-card-content>
+  </mat-card>
+}
+
+@if (!isLoading && !chapter) {
+  <div class="empty-state">
+    <mat-icon class="empty-icon">menu_book</mat-icon>
+    <p>Enter a chapter URL above to start reading.</p>
+  </div>
+}
+
