@@ -1,0 +1,25 @@
+<!-- Top Navigation Toolbar -->
+<mat-toolbar color="primary" class="app-toolbar">
+  <mat-icon>auto_stories</mat-icon>
+  <span class="toolbar-title">{{ title }}</span>
+  <span class="toolbar-spacer"></span>
+  <span class="toolbar-subtitle">Your personal webnovel reader</span>
+</mat-toolbar>
+
+<!-- Main Content -->
+<div class="app-container">
+  <!-- URL Input -->
+  <app-url-input></app-url-input>
+
+  <!-- Navigation (top) -->
+  <app-navigation></app-navigation>
+
+  <!-- Audio Player -->
+  <app-audio-player></app-audio-player>
+
+  <!-- Chapter Reader -->
+  <app-reader></app-reader>
+
+  <!-- Navigation (bottom) -->
+  <app-navigation></app-navigation>
+</div>

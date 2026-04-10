@@ -1,0 +1,105 @@
+<mat-card class="player-card">
+  <mat-card-header>
+    <mat-card-title>
+      <mat-icon>headphones</mat-icon>
+      Audio Player
+    </mat-card-title>
+    <mat-card-subtitle>
+      Active engine:
+      <mat-chip color="accent" highlighted>{{ engineLabel }}</mat-chip>
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <!-- TTS Engine Selection -->
+    <mat-form-field appearance="outline" class="select-field">
+      <mat-label>TTS Engine</mat-label>
+      <mat-select [(value)]="selectedEngineId" (selectionChange)="onEngineChange(selectedEngineId)">
+        @for (engine of engineOptions; track engine.id) {
+          <mat-option [value]="engine.id">
+            {{ engine.label }}
+            <span class="engine-desc">— {{ engine.description }}</span>
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Voice Selection (browser only) -->
+    @if (selectedEngineId === 'browser' && availableVoices.length > 0) {
+      <mat-form-field appearance="outline" class="select-field">
+        <mat-label>Voice</mat-label>
+        <mat-select [(value)]="selectedVoiceUri" (selectionChange)="onVoiceChange(selectedVoiceUri)">
+          <mat-option value="">Default voice</mat-option>
+          @for (voice of availableVoices; track voice.voiceURI) {
+            <mat-option [value]="voice.voiceURI">
+              {{ voice.name }} ({{ voice.lang }})
+            </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    }
+
+    <!-- Progress bar -->
+    <div class="progress-container">
+      <span class="progress-label">Progress: {{ progress | number:'1.0-0' }}%</span>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" [style.width.%]="progress"></div>
+      </div>
+    </div>
+
+    <!-- Speed Slider -->
+    <div class="speed-container">
+      <mat-icon>speed</mat-icon>
+      <span class="speed-label">Speed: {{ rate | number:'1.1-1' }}×</span>
+      <mat-slider
+        min="0.5"
+        max="2"
+        step="0.1"
+        class="speed-slider"
+      >
+        <input
+          matSliderThumb
+          [value]="rate"
+          (valueChange)="onRateChange($event)"
+        />
+      </mat-slider>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions class="player-actions">
+    <!-- Play / Pause / Resume -->
+    @if (!isPlaying) {
+      <button
+        mat-fab
+        color="primary"
+        (click)="play()"
+        matTooltip="Play"
+        class="play-btn"
+      >
+        <mat-icon>play_arrow</mat-icon>
+      </button>
+    } @else {
+      <button
+        mat-fab
+        color="accent"
+        (click)="pause()"
+        matTooltip="Pause"
+        class="play-btn"
+      >
+        <mat-icon>pause</mat-icon>
+      </button>
+    }
+
+    <button mat-icon-button (click)="stop()" matTooltip="Stop" color="warn">
+      <mat-icon>stop</mat-icon>
+    </button>
+
+    @if (!speechSupported && selectedEngineId === 'browser') {
+      <span class="warning-text">
+        <mat-icon>warning</mat-icon>
+        Web Speech API not supported in this browser.
+      </span>
+    }
+  </mat-card-actions>
+</mat-card>
+

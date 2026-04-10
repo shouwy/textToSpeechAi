@@ -1,0 +1,23 @@
+.nav-card {
+  margin-bottom: 16px;
+
+  mat-card-content {
+    padding: 8px 0;
+  }
+}
+
+.nav-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}

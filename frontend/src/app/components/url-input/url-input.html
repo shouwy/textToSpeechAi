@@ -1,0 +1,48 @@
+<mat-card class="url-input-card">
+  <mat-card-header>
+    <mat-card-title>
+      <mat-icon>book</mat-icon>
+      WebNovel Reader
+    </mat-card-title>
+    <mat-card-subtitle>Enter a chapter URL to start reading</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-form-field appearance="outline" class="url-field">
+      <mat-label>Chapter URL</mat-label>
+      <input
+        matInput
+        [formControl]="urlControl"
+        placeholder="https://example.com/chapter-1"
+        type="url"
+        (keyup.enter)="loadChapter()"
+        autocomplete="url"
+      />
+      <mat-icon matSuffix>link</mat-icon>
+      @if (urlError) {
+        <mat-error>{{ urlError }}</mat-error>
+      }
+    </mat-form-field>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="loadChapter()"
+      [disabled]="isLoading"
+      class="load-btn"
+    >
+      @if (isLoading) {
+        <mat-spinner diameter="20"></mat-spinner>
+        Loading…
+      } @else {
+        <ng-container>
+          <mat-icon>download</mat-icon>
+          Load Chapter
+        </ng-container>
+      }
+    </button>
+  </mat-card-actions>
+</mat-card>
+
